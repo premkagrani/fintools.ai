@@ -1,4 +1,6 @@
-# FinTools Studio
+# fintools.ai
+
+Providing Financial Tools to a common man.
 
 A dependency-free single-page finance calculator website with:
 
