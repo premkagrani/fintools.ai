@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinTools Studio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <canvas id="live-wallpaper" aria-hidden="true"></canvas>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Finance calculators</p>
+          <h1>FinTools Studio</h1>
+        </div>
+        <div class="currency-control">
+          <label for="currency-select">Currency</label>
+          <select id="currency-select" aria-label="Select currency">
+            <option value="INR" selected>INR - Indian Rupee</option>
+            <option value="USD">USD - US Dollar</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+            <option value="AUD">AUD - Australian Dollar</option>
+            <option value="CAD">CAD - Canadian Dollar</option>
+            <option value="SGD">SGD - Singapore Dollar</option>
+          </select>
+          <strong id="currency-symbol" aria-hidden="true">₹</strong>
+        </div>
+      </header>
+
+      <section class="workspace" aria-label="Finance tools workspace">
+        <nav class="tool-tabs" aria-label="Calculator tools">
+          <button class="tab-button is-active" type="button" data-tool="sip">
+            <span aria-hidden="true">↗</span>
+            SIP
+          </button>
+          <button class="tab-button" type="button" data-tool="stepup">
+            <span aria-hidden="true">⇧</span>
+            Step-up SIP
+          </button>
+          <button class="tab-button" type="button" data-tool="emi">
+            <span aria-hidden="true">≋</span>
+            EMI
+          </button>
+        </nav>
+
+        <section class="tool-panel" data-panel="sip">
+          <div class="input-grid">
+            <label>
+              <span>Monthly investment</span>
+              <input id="sip-amount" type="number" min="500" step="500" value="10000" />
+            </label>
+            <label>
+              <span>Expected annual return</span>
+              <input id="sip-return" type="number" min="1" max="40" step="0.1" value="12" />
+            </label>
+            <label>
+              <span>Time period in years</span>
+              <input id="sip-years" type="number" min="1" max="40" step="1" value="15" />
+            </label>
+          </div>
+        </section>
+
+        <section class="tool-panel is-hidden" data-panel="stepup">
+          <div class="input-grid">
+            <label>
+              <span>Starting monthly investment</span>
+              <input id="stepup-amount" type="number" min="500" step="500" value="10000" />
+            </label>
+            <label>
+              <span>Annual step-up</span>
+              <input id="stepup-rate" type="number" min="0" max="50" step="0.5" value="10" />
+            </label>
+            <label>
+              <span>Expected annual return</span>
+              <input id="stepup-return" type="number" min="1" max="40" step="0.1" value="12" />
+            </label>
+            <label>
+              <span>Time period in years</span>
+              <input id="stepup-years" type="number" min="1" max="40" step="1" value="15" />
+            </label>
+          </div>
+        </section>
+
+        <section class="tool-panel is-hidden" data-panel="emi">
+          <div class="input-grid">
+            <label>
+              <span>Loan amount</span>
+              <input id="emi-principal" type="number" min="10000" step="10000" value="2500000" />
+            </label>
+            <label>
+              <span>Interest rate</span>
+              <input id="emi-rate" type="number" min="1" max="30" step="0.1" value="8.5" />
+            </label>
+            <label>
+              <span>Loan tenure in years</span>
+              <input id="emi-years" type="number" min="1" max="40" step="1" value="20" />
+            </label>
+          </div>
+        </section>
+
+        <aside class="results" aria-live="polite">
+          <div class="summary-card">
+            <p id="primary-label">Estimated maturity value</p>
+            <strong id="primary-value">₹0</strong>
+            <span id="secondary-copy">Your SIP estimate will appear here.</span>
+          </div>
+
+          <div class="metric-grid">
+            <div>
+              <span id="metric-a-label">Invested amount</span>
+              <strong id="metric-a">₹0</strong>
+            </div>
+            <div>
+              <span id="metric-b-label">Estimated returns</span>
+              <strong id="metric-b">₹0</strong>
+            </div>
+            <div>
+              <span id="metric-c-label">Duration</span>
+              <strong id="metric-c">0 years</strong>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <canvas id="result-chart" width="720" height="360" aria-label="Calculator result chart"></canvas>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
